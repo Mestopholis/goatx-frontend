@@ -119,5 +119,14 @@ export class BlockchainService {
     masterChefContract.connect(signer);
     await masterChefContract.enterStaking(amount.toString());
   }
+
+  async unstakeGoatx(masterChef: string, amount: number) {
+    let masterChefContract : Contract;
+    var provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner()
+    masterChefContract = new ethers.Contract( masterChef, abis.getAbiForMasterChef(), signer )
+    masterChefContract.connect(signer);
+    await masterChefContract.leaveStaking(amount.toString());
+  }
 }
  

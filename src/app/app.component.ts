@@ -79,6 +79,9 @@ export class AppComponent {
 
   async stakeGoatx() {
     await this.blockchainService.stakeGoatx(contractAddresses.getMasterChefAddress(), this.toWei(this.GoatxStakeAmount));
+  }
 
+  async unstakeGoatx() {
+    await this.blockchainService.unstakeGoatx(contractAddresses.getMasterChefAddress(), this.toWei(this.GoatxStakeAmount));
   }
 }
