@@ -68,9 +68,11 @@ export class AppComponent {
 
   async approveGoatx() {
     let approved: boolean;
-    approved = await this.blockchainService.approveTokenForContract(contractAddresses.getGoatxTokenAddress(), contractAddresses.getMasterChefAddress())
-  
-  
+    approved = await this.blockchainService.approveTokenForContract(contractAddresses.getGoatxTokenAddress(), contractAddresses.getMasterChefAddress());
   }
 
+  async approveGrainStore() {
+    let approved: boolean;
+    approved = await this.blockchainService.approveTokenForContract(contractAddresses.getGrainStoreAddress(), contractAddresses.getMasterChefAddress());
+  }
 }
