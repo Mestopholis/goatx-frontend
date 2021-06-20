@@ -17,6 +17,7 @@ export class AppComponent {
   constructor(private blockchainService: BlockchainService) {}
   MyAccount = '';
   ChainId: any;
+  GoatxStakeAmount: any = "10";
   Balance: any;
   GOATXBAL: any;
   async connectToMetamask() {
@@ -74,5 +75,10 @@ export class AppComponent {
   async approveGrainStore() {
     let approved: boolean;
     approved = await this.blockchainService.approveTokenForContract(contractAddresses.getGrainStoreAddress(), contractAddresses.getMasterChefAddress());
+  }
+
+  async stakeGoatx() {
+    await this.blockchainService.stakeGoatx(contractAddresses.getMasterChefAddress(), this.toWei(this.GoatxStakeAmount));
+
   }
 }

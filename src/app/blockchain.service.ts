@@ -2,6 +2,7 @@ import { Injectable, ɵCompiler_compileModuleSync__POST_R3__ } from '@angular/co
 import { Contract, ethers } from 'ethers';
 import * as abis from './../utils/getAbis';
 import * as artfinabi from './../constants/abis/artfin.json';
+import { getContractAddress } from 'ethers/lib/utils';
 
 declare let window: any;
 
@@ -110,7 +111,13 @@ export class BlockchainService {
     return approval;
   }
 
-  async swapTokens(fromTokenAddress: string, toTokenAddress: string) {
-    
+  async stakeGoatx(masterChef: string, amount: number) {
+    let masterChefContract : Contract;
+    var provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner()
+    masterChefContract = new ethers.Contract( masterChef, abis.getAbiForMasterChef(), signer )
+    masterChefContract.connect(signer);
+    await masterChefContract.enterStaking(amount.toString());
   }
 }
+ 
